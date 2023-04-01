@@ -3,7 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { Button, useTheme } from "react-native-paper";
 import Svg, { Path } from "react-native-svg";
 
-const LoginScreen: React.FC = () => {
+const SignupScreen: React.FC = () => {
   const theme = useTheme();
   const handleGoogleLoginPress = () => {
     console.log("Login with Google button pressed");
@@ -20,7 +20,7 @@ const LoginScreen: React.FC = () => {
         onPress={handleGoogleLoginPress}
         style={{ ...styles.button }}
       >
-        Signin with Google
+        Signup with Google
       </Button>
     </View>
   );
@@ -37,4 +37,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default SignupScreen;
