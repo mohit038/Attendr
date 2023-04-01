@@ -4,11 +4,14 @@ import {
   MD3LightTheme as DefaultTheme,
   Provider as PaperProvider,
 } from "react-native-paper";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   return (
     <PaperProvider theme={theme}>
-      <HomeView />
+      <NavigationContainer>
+        <HomeView />
+      </NavigationContainer>
     </PaperProvider>
   );
 }
