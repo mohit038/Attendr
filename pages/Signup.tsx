@@ -7,7 +7,6 @@ const SignupScreen: React.FC = () => {
   const theme = useTheme();
   const handleGoogleLoginPress = () => {
     console.log("Login with Google button pressed");
-    // Handle login with Google logic here
   };
 
   return (
@@ -30,7 +29,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    padding: 40,
+    padding: 20,
   },
   button: {
     backgroundColor: "#4285F4",

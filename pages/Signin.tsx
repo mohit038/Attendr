@@ -2,6 +2,7 @@ import * as React from "react";
 import { View, StyleSheet } from "react-native";
 import { Button, useTheme } from "react-native-paper";
 import Svg, { Path } from "react-native-svg";
+import SignupScreen from "./Signup";
 
 const LoginScreen: React.FC = () => {
   const theme = useTheme();
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    padding: 40,
+    padding: 20,
   },
   button: {
     backgroundColor: "#4285F4",

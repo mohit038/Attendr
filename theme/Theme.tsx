@@ -5,11 +5,17 @@ import {
   MD3DarkTheme,
 } from "react-native-paper";
 import { useColorScheme } from "react-native";
+import { StatusBar } from "expo-status-bar";
 
 const Theme = ({ children }: { children: React.ReactElement }) => {
   const colorScheme = useColorScheme();
   const paperTheme = colorScheme === "dark" ? darkTheme : lightTheme;
-  return <PaperProvider theme={paperTheme}>{children}</PaperProvider>;
+  return (
+    <>
+      <StatusBar />
+      <PaperProvider theme={paperTheme}>{children}</PaperProvider>
+    </>
+  );
 };
 
 export default Theme;
@@ -18,7 +24,7 @@ const lightTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: "#6200ee",
+    primary: "#000000",
     accent: "#03dac4",
     background: "#f6f6f6",
     surface: "#ffffff",
@@ -33,7 +39,7 @@ const darkTheme = {
   ...MD3DarkTheme,
   colors: {
     ...MD3DarkTheme.colors,
-    primary: "#bb86fc",
+    primary: "#ffffff",
     accent: "#03dac6",
     background: "#121212",
     surface: "#121212",

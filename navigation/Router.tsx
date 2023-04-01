@@ -1,22 +1,33 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import Login from "../pages/Login";
+import SigninScreen from "../pages/Signin";
 import SignupScreen from "../pages/Signup";
+import Home from "../pages/Home";
+import { IconButton } from "react-native-paper";
 
 const Stack = createNativeStackNavigator();
 
 const Router = () => {
+  const date = new Date();
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Login"
-          component={Login}
+          name="Today"
+          component={Home}
+          options={{
+            headerTitle: `${date.toDateString().slice(0, 11)}`,
+            headerRight: () => (
+              <IconButton icon="plus" size={15} style={{ borderWidth: 1 }} />
+            ),
+          }}
+        />
+        <Stack.Screen
+          name="Signin"
+          component={SigninScreen}
           options={{ header: () => null }}
         />
-      </Stack.Navigator>
-      <Stack.Navigator>
         <Stack.Screen
           name="Signup"
           component={SignupScreen}
