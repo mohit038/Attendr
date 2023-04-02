@@ -4,8 +4,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import SigninScreen from "../pages/Signin";
 import SignupScreen from "../pages/Signup";
 import Home from "../pages/Home";
-import { IconButton, useTheme } from "react-native-paper";
+import { Button, Text, useTheme } from "react-native-paper";
 import AddNew from "../pages/AddNew";
+import { Pressable } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,22 +18,34 @@ const Router = () => {
       <Stack.Navigator>
         <Stack.Screen
           name="Today"
-          component={({}) => <Home />}
+          component={Home}
           options={({ route, navigation }) => ({
             headerTitle: `${date.toDateString().slice(0, 11)}`,
             headerStyle: {
-              backgroundColor: theme.colors.surface,
+              backgroundColor: theme.colors.background,
             },
+            headerTransparent: true,
+            headerBlurEffect: "regular",
             headerTitleStyle: {
               color: theme.colors.primary,
             },
-            headerRight: (props) => (
-              <IconButton
-                icon="plus"
-                size={15}
-                style={{ borderWidth: 1 }}
-                onPress={() => navigation.navigate("AddNew")}
-              />
+            headerShadowVisible: false,
+
+            headerRight: () => (
+              <Pressable onPress={() => navigation.navigate("AddNew")}>
+                <Text
+                  variant="titleMedium"
+                  style={{
+                    color: theme.colors.primary,
+                    fontWeight: "400",
+                    padding: 8,
+                    paddingRight: 0,
+                    paddingLeft: 24,
+                  }}
+                >
+                  Add
+                </Text>
+              </Pressable>
             ),
             headerLargeTitle: true,
           })}
@@ -40,7 +53,7 @@ const Router = () => {
         <Stack.Screen
           name="AddNew"
           component={AddNew}
-          options={{ presentation: "modal" }}
+          options={{ presentation: "modal", title: "Add New" }}
         />
         <Stack.Screen
           name="Signin"

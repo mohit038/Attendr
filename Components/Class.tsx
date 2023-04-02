@@ -5,25 +5,37 @@ import { AnimatedCircularProgress } from "react-native-circular-progress";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 
 interface classProps {
+  relativeIndex?: number;
   name: string;
   attendance: number;
   total: number;
   attendanceCriteria: number;
 }
 
-const Class = ({ name, attendance, total, attendanceCriteria }: classProps) => {
+const Class = ({
+  relativeIndex,
+  name,
+  attendance,
+  total,
+  attendanceCriteria,
+}: classProps) => {
   const theme = useTheme();
 
   const attendancePercentage = total === 0 ? 0 : (attendance / total) * 100;
   return (
     <View
-      style={{ ...styles.container, backgroundColor: theme.colors.surface }}
+      style={{
+        ...styles.container,
+        backgroundColor: theme.colors.surface,
+        ...(relativeIndex === 0 && styles.firstContainer),
+        ...(relativeIndex === 1 && styles.lastContainer),
+      }}
     >
       <View style={{ flex: 1 }}>
         <Text
           numberOfLines={1}
-          variant="headlineSmall"
-          style={{ fontWeight: "400" }}
+          variant="titleMedium"
+          style={{ fontWeight: "500" }}
         >
           {name}
         </Text>
@@ -35,12 +47,12 @@ const Class = ({ name, attendance, total, attendanceCriteria }: classProps) => {
         >
           <Text
             style={{ color: theme.colors.tertiary, fontWeight: "300" }}
-            variant="titleMedium"
+            variant="titleSmall"
           >
             Attendance
           </Text>
           <Text
-            variant="titleMedium"
+            variant="titleSmall"
             style={{
               marginLeft: 8,
               color: theme.colors.tertiary,
@@ -57,7 +69,7 @@ const Class = ({ name, attendance, total, attendanceCriteria }: classProps) => {
       </View>
       <View style={{ alignItems: "center" }}>
         <AnimatedCircularProgress
-          size={60}
+          size={56}
           width={4}
           fill={attendancePercentage}
           rotation={360}
@@ -66,7 +78,7 @@ const Class = ({ name, attendance, total, attendanceCriteria }: classProps) => {
         >
           {() => (
             <Text
-              variant="titleLarge"
+              variant="titleMedium"
               style={{ fontWeight: "400" }}
             >{`${Math.round(attendancePercentage)}`}</Text>
           )}
@@ -97,9 +109,17 @@ export default Class;
 const styles = StyleSheet.create({
   container: {
     padding: 15,
-    borderRadius: 10,
     flexDirection: "row",
     backgroundColor: "#fff",
+    marginTop: 1,
+  },
+  firstContainer: {
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+  },
+  lastContainer: {
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
 });
 

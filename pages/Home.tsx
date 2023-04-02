@@ -17,57 +17,56 @@ const Home: React.FC = () => {
       contentInsetAdjustmentBehavior="automatic"
       style={{ ...styles.container, backgroundColor: theme.colors.background }}
     >
-      <Class name="DBMS" attendance={9} total={10} attendanceCriteria={75} />
-      <View style={{ marginTop: 8 }}></View>
+      <Class
+        relativeIndex={0}
+        name="DBMS"
+        attendance={9}
+        total={10}
+        attendanceCriteria={75}
+      />
       <Class
         name="Biosensor"
         attendance={12}
         total={18}
         attendanceCriteria={75}
       />
-      <View style={{ marginTop: 8 }}></View>
       <Class
         name="Data Security"
         attendance={12}
         total={18}
         attendanceCriteria={75}
       />
-      <View style={{ marginTop: 8 }}></View>
       <Class
         name="Operating Systems"
         attendance={12}
         total={18}
         attendanceCriteria={75}
       />
-      <View style={{ marginTop: 8 }}></View>
       <Class
         name="Operating Systems"
         attendance={12}
         total={18}
         attendanceCriteria={75}
       />
-      <View style={{ marginTop: 8 }}></View>
       <Class
         name="Operating Systems"
         attendance={12}
         total={18}
         attendanceCriteria={75}
       />
-      <View style={{ marginTop: 8 }}></View>
       <Class
         name="Operating Systems"
         attendance={12}
         total={18}
         attendanceCriteria={75}
       />
-      <View style={{ marginTop: 8 }}></View>
       <Class
+        relativeIndex={1}
         name="Operating Systems"
         attendance={12}
         total={18}
         attendanceCriteria={75}
       />
-      <View style={{ marginTop: 8 }}></View>
     </ScrollView>
   );
 };
@@ -75,7 +74,7 @@ const Home: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    padding: 16,
   },
   title: {
     fontSize: 24,
