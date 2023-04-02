@@ -12,7 +12,7 @@ const Theme = ({ children }: { children: React.ReactElement }) => {
   const paperTheme = colorScheme === "dark" ? darkTheme : lightTheme;
   return (
     <>
-      <StatusBar />
+      <StatusBar style={colorScheme === "light" ? "dark" : "light"} />
       <PaperProvider theme={paperTheme}>{children}</PaperProvider>
     </>
   );

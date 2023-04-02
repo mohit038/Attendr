@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { useTheme } from "react-native-paper";
 import Class from "../Components/Class";
 
@@ -9,46 +9,79 @@ interface HomeState {
   attendanceCriteria: number;
 }
 
-const Home: React.FC = () => {
+const Home: React.FC = ({ nativation }) => {
   const theme = useTheme();
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerSearchBarOptions: {
+        // search bar options
+      },
+    });
+  }, [navigation]);
 
   return (
-    <View
+    <ScrollView
+      contentInsetAdjustmentBehavior="automatic"
       style={{ ...styles.container, backgroundColor: theme.colors.background }}
     >
-      <Class name="DBMS" attendance={9} total={9} attendanceCriteria={75} />
+      <Class name="DBMS" attendance={9} total={10} attendanceCriteria={75} />
+      <View style={{ marginTop: 8 }}></View>
       <Class
         name="Biosensor"
-        attendance={11}
-        total={12}
+        attendance={12}
+        total={18}
         attendanceCriteria={75}
       />
-
-      {/* <Text style={styles.title}>Attendance Tracker</Text>
-      <Text style={styles.text}>
-        Attended: {state.attended}/{state.total} (
-        {attendancePercentage.toFixed(1)}%)
-      </Text>
-      <Text style={styles.text}>
-        Classes you can skip:{" "}
-        {classesToSkip > 0 ? Math.floor(classesToSkip) : 0}
-      </Text>
-      <View style={styles.buttonContainer}>
-        <Button mode="contained" onPress={handleMarkPresent}>
-          Mark Present
-        </Button>
-        <Button mode="outlined" onPress={handleMarkAbsent}>
-          Mark Absent
-        </Button>
-      </View> */}
-    </View>
+      <View style={{ marginTop: 8 }}></View>
+      <Class
+        name="Data Security"
+        attendance={12}
+        total={18}
+        attendanceCriteria={75}
+      />
+      <View style={{ marginTop: 8 }}></View>
+      <Class
+        name="Operating Systems"
+        attendance={12}
+        total={18}
+        attendanceCriteria={75}
+      />
+      <View style={{ marginTop: 8 }}></View>
+      <Class
+        name="Operating Systems"
+        attendance={12}
+        total={18}
+        attendanceCriteria={75}
+      />
+      <View style={{ marginTop: 8 }}></View>
+      <Class
+        name="Operating Systems"
+        attendance={12}
+        total={18}
+        attendanceCriteria={75}
+      />
+      <View style={{ marginTop: 8 }}></View>
+      <Class
+        name="Operating Systems"
+        attendance={12}
+        total={18}
+        attendanceCriteria={75}
+      />
+      <View style={{ marginTop: 8 }}></View>
+      <Class
+        name="Operating Systems"
+        attendance={12}
+        total={18}
+        attendanceCriteria={75}
+      />
+      <View style={{ marginTop: 8 }}></View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     padding: 10,
   },
   title: {

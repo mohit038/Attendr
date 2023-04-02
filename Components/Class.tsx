@@ -2,6 +2,7 @@ import { StyleSheet, View } from "react-native";
 import { IconButton, Text, useTheme } from "react-native-paper";
 import React from "react";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 interface classProps {
   name: string;
@@ -21,8 +22,8 @@ const Class = ({ name, attendance, total, attendanceCriteria }: classProps) => {
       <View style={{ flex: 1 }}>
         <Text
           numberOfLines={1}
-          variant="headlineMedium"
-          style={{ fontWeight: "700" }}
+          variant="headlineSmall"
+          style={{ fontWeight: "400" }}
         >
           {name}
         </Text>
@@ -32,23 +33,32 @@ const Class = ({ name, attendance, total, attendanceCriteria }: classProps) => {
             alignItems: "center",
           }}
         >
-          <Text variant="titleLarge">Attendance</Text>
           <Text
-            variant="titleLarge"
-            style={{ marginLeft: 8 }}
+            style={{ color: theme.colors.tertiary, fontWeight: "300" }}
+            variant="titleMedium"
+          >
+            Attendance
+          </Text>
+          <Text
+            variant="titleMedium"
+            style={{
+              marginLeft: 8,
+              color: theme.colors.tertiary,
+              fontWeight: "300",
+            }}
           >{`${attendance}/${total}`}</Text>
         </View>
         <Text
           variant="bodyMedium"
-          style={{ marginTop: "auto", fontWeight: "600", marginBottom: 2 }}
+          style={{ marginTop: "auto", fontWeight: "400", marginBottom: 2 }}
         >
           {classToAttendOrSkip(attendance, total, attendanceCriteria)}
         </Text>
       </View>
       <View style={{ alignItems: "center" }}>
         <AnimatedCircularProgress
-          size={70}
-          width={5}
+          size={60}
+          width={4}
           fill={attendancePercentage}
           rotation={360}
           tintColor={theme.colors.primary}
@@ -57,7 +67,7 @@ const Class = ({ name, attendance, total, attendanceCriteria }: classProps) => {
           {() => (
             <Text
               variant="titleLarge"
-              style={{ fontWeight: "600" }}
+              style={{ fontWeight: "400" }}
             >{`${Math.round(attendancePercentage)}`}</Text>
           )}
         </AnimatedCircularProgress>
@@ -98,15 +108,28 @@ const classToAttendOrSkip = (
   total: number,
   attendanceCriteria: number
 ) => {
-  const classToAttendOrSkip = (attendanceCriteria / 100) * total - attendance;
-  if (classToAttendOrSkip === 0) {
-    return `You can't skip next class`;
-  } else if (classToAttendOrSkip > 0) {
-    return `Attend next ${classToAttendOrSkip} ${
-      classToAttendOrSkip > 1 ? "classes" : "class"
-    } to get back on track`;
+  const attendancePercentage = total === 0 ? 0 : (attendance / total) * 100;
+  const classToAttend = Math.ceil(
+    (attendanceCriteria * total - 100 * attendance) / (100 - attendanceCriteria)
+  );
+  const classToSkip = Math.floor(
+    (100 * attendance) / attendanceCriteria - total
+  );
+  if (attendancePercentage === attendanceCriteria)
+    return "You can't skip the next class";
+  else if (attendancePercentage < attendanceCriteria) {
+    if (classToAttend <= 1) {
+      return `Attend next class to catch up`;
+    } else {
+      return `Attend next ${classToAttend} classes to catch up`;
+    }
+  } else {
+    if (classToSkip < 1) {
+      return `You can't skip the next class`;
+    } else if (classToSkip === 1) {
+      return `You can skip the next class`;
+    } else {
+      return `You can skip the next ${classToSkip} classes`;
+    }
   }
-  return `You can skip next ${-classToAttendOrSkip} ${
-    -classToAttendOrSkip > 1 ? "classes" : "class"
-  }`;
 };
