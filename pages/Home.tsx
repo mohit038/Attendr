@@ -9,15 +9,8 @@ interface HomeState {
   attendanceCriteria: number;
 }
 
-const Home: React.FC = ({ nativation }) => {
+const Home: React.FC = () => {
   const theme = useTheme();
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerSearchBarOptions: {
-        // search bar options
-      },
-    });
-  }, [navigation]);
 
   return (
     <ScrollView
