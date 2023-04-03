@@ -43,7 +43,7 @@ const Router = () => {
                     paddingLeft: 24,
                   }}
                 >
-                  Add
+                  New
                 </Text>
               </Pressable>
             ),
@@ -53,7 +53,43 @@ const Router = () => {
         <Stack.Screen
           name="AddNew"
           component={AddNew}
-          options={{ presentation: "modal", title: "Add New" }}
+          options={{
+            presentation: "modal",
+            title: "New Class",
+            headerShadowVisible: false,
+            headerLeft: () => (
+              <Pressable>
+                <Text
+                  variant="titleMedium"
+                  style={{
+                    color: theme.colors.primary,
+                    fontWeight: "400",
+                    padding: 8,
+                    paddingRight: 24,
+                    paddingLeft: 0,
+                  }}
+                >
+                  Cancel
+                </Text>
+              </Pressable>
+            ),
+            headerRight: () => (
+              <Pressable>
+                <Text
+                  variant="titleMedium"
+                  style={{
+                    color: theme.colors.primary,
+                    fontWeight: "600",
+                    padding: 8,
+                    paddingRight: 0,
+                    paddingLeft: 24,
+                  }}
+                >
+                  Add
+                </Text>
+              </Pressable>
+            ),
+          }}
         />
         <Stack.Screen
           name="Signin"

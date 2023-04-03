@@ -2,6 +2,7 @@ import * as React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { useTheme } from "react-native-paper";
 import Class from "../Components/Class";
+import Card from "../Components/Card";
 
 interface HomeState {
   attended: number;
